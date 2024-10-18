@@ -1,0 +1,33 @@
+CREATE TABLE vendor (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nomor VARCHAR(20) NOT NULL,
+    nama VARCHAR(50) NOT NULL,
+    kode VARCHAR(10) NOT NULL,
+    alamat TEXT NOT NULL,
+    kontak VARCHAR(15) NOT NULL
+);
+
+CREATE TABLE pembelian (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    tanggal DATE NOT NULL,
+    nomor VARCHAR(20) NOT NULL,
+    produk_id INT NOT NULL,
+    jumlah INT NOT NULL,
+    harga DECIMAL(10, 2) NOT NULL,
+    vendor_id INT NOT NULL,
+    FOREIGN KEY (vendor_id) REFERENCES vendor(id)
+);
+
+INSERT INTO vendor (nomor, nama, kode, alamat, kontak) VALUES
+('V001', 'Vendor Sukses', 'VS01', 'Jl. Merdeka No. 12, Jakarta', '081234567890'),
+('V002', 'Vendor Makmur', 'VM02', 'Jl. Proklamasi No. 22, Bandung', '081345678901'),
+('V003', 'Vendor Jaya', 'VJ03', 'Jl. Sudirman No. 33, Surabaya', '081456789012'),
+('V004', 'Vendor Berkah', 'VB04', 'Jl. Diponegoro No. 44, Yogyakarta', '081567890123'),
+('V005', 'Vendor Sentosa', 'VS05', 'Jl. Gajah Mada No. 55, Medan', '081678901234');
+
+INSERT INTO pembelian (tanggal, nomor, produk_id, jumlah, harga, vendor_id) VALUES
+('2024-10-01', 'PB001', 1, 10, 150000, 1),
+('2024-10-02', 'PB002', 2, 20, 300000, 2),
+('2024-10-03', 'PB003', 1, 5, 75000, 3),
+('2024-10-04', 'PB004', 3, 15, 225000, 4),
+('2024-10-05', 'PB005', 2, 30, 450000, 5);
